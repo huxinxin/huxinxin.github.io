@@ -1,4 +1,4 @@
-# 问题
+# 问题一
 
 Go语言里的Goroutine是抢占式调度还是非抢占式调度？
 
@@ -37,4 +37,53 @@ func main() {
 ```
 
 由执行结果可知funcA和funcB交替执行。所以Goroutine应该是抢占式的调度，不会有某个Goroutine长期占有CPU导致其他Goroutine不能执行的情况发生。
+
+# 问题二
+
+线程安全（或者说协程安全）
+
+# 代码
+
+```
+package main
+
+import (
+    "fmt"
+    "runtime"
+)
+
+var result int = 0 
+var chA = make(chan bool)
+var chB = make(chan bool)
+
+func funcA() {
+    for i := 0; i < 100000; i++ {
+        result = result + 1 
+    }   
+    chA <- true
+}
+func funcB() {
+    for i := 0; i < 100000; i++ {
+        result = result + 1 
+    }   
+    chB <- true
+}
+
+func main() {
+    runtime.GOMAXPROCS(4)
+    go funcA()
+    go funcB()
+    <-chA
+    <-chB
+    fmt.Println("result = ", result)
+}
+
+```
+
+输出结果：  
+result = 102277
+
+多线程下result = result + 1并不是原子操作，需要加锁，没什么问题。
+
+下面把
 
