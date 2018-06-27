@@ -118,8 +118,6 @@ func main() {
 
 根据\(赋值指令 +  defer + return\)的执行过程，可以对代码进行改写
 
-funcA可以改写为：
-
 ```
 func funcA() (result int) {
     result = 0
@@ -128,6 +126,19 @@ func funcA() (result int) {
     }() 
     return 
 }
+```
+
+```
+func funcB() (result int) {
+    t := 2
+    result = t
+    defer func() {
+        t = t + 2 
+    }() 
+    return t
+}
+
+
 ```
 
 
