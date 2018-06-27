@@ -29,5 +29,40 @@ defer test A
 
 # 二、当defer被声明时，其参数就会被实时解析
 
+```
+package main
 
+import "fmt"
+
+func main() {
+    funcA()
+    funcB()
+}
+
+func funcA() {
+    a := 5
+    defer func() {
+        fmt.Println("funcA a=", a)
+    }() 
+    a++ 
+}
+func funcB() {
+    a := 5
+    defer func(a int) {
+        fmt.Println("funcB a=", a)
+    }(a)
+    a++ 
+}
+
+```
+
+执行结果：
+
+funcA
+
+a= 6
+
+funcB
+
+a= 5
 
