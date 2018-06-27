@@ -139,5 +139,17 @@ func funcB() (result int) {
 }
 ```
 
+```
+func funcC() (result int) {
+    result = 1
+    func(r int) {
+        r = r + 2 
+    }(result)
+    return
+}
+
+
+```
+
 
 
