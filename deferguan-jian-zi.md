@@ -27,3 +27,7 @@ defer test B
 
 defer test A
 
+# 二、当defer被声明时，其参数就会被实时解析
+
+
+
