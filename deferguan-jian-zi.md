@@ -74,5 +74,70 @@ defer的执行是被插入到return指令之前的
 
 有了defer之后，就变成了 \(赋值指令 +  defer + return\)
 
+```
+package main
+
+import "fmt"
+
+func funcA() (result int) {
+    defer func() {
+        result++
+    }() 
+    return 0
+}
+
+func funcB() (result int) {
+    t := 2
+    defer func() {
+        t = t + 2 
+    }() 
+    return t
+}
+
+func funcC() (result int) {
+    defer func(r int) {
+        r = r + 2 
+    }(result)
+    return 1
+}
+
+func main() {
+    fmt.Println(funcA())
+    fmt.Println(funcB())
+    fmt.Println(funcC())
+}
+
+```
+
+执行结果：
+
+1
+
+2
+
+1
+
+
+
+根据\(赋值指令 +  defer + return\)的执行过程，可以对代码进行改写
+
+funcA可以改写为：
+
+```
+func funcA() (result int) {
+    result = 0
+    defer func() {
+        result++
+    }() 
+    return 
+}
+```
+
+
+
+
+
+
+
 
 
