@@ -1,5 +1,5 @@
 # Summary
 
 * [简介](README.md)
-* [goroutine](chapter1.md)
+* [goroutine调度方式](chapter1.md)
 
