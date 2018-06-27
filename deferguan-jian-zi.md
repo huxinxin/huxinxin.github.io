@@ -61,22 +61,18 @@ funcA a= 6
 
 funcB a= 5
 
-# 三、defer在return之前执行
+# 三、defer在return之前执行（而不是return XXX）
 
 这是官方文档中明确说明的，然而需要注意的是：
 
 * go返回值的方式跟C是不一样的，为了支持多值返回，go是用栈返回值的，而C是用寄存器。
 * return XXX并不是一个原子指令
 
-整个return过程，没有defer之前是，先把在栈中写一个值，这个值被会当作返回值。然后再调用RET指令返回。return xxx语句汇编后是先给返回值赋值，再做一个空的return: \( 赋值指令 ＋ RET指令\)
+整个return过程，没有defer之前是，先把在栈中写一个值，这个值被会当作返回值。然后再调用return。return xxx是先给返回值赋值，再做一个空的return\( 赋值 ＋ return\)
 
 defer的执行是被插入到return指令之前的
 
-有了defer之后，就变成了 \(赋值指令 + CALL defer指令 + RET指令\)
-
-而在CALL defer函数中，有可能将最终的返回值改写了...也有可能没改写。总之，如果改写了，那么看上去就像defer是在return xxx之后执行的~
+有了defer之后，就变成了 \(赋值指令 +  defer + return\)
 
 
-
-看一下代码：
 
