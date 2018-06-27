@@ -36,7 +36,7 @@ func main() {
 }
 ```
 
-由执行结果可知funcA和funcB交替执行。所以Goroutine应该是抢占式的调度，不会有某个Goroutine长期占有CPU导致其他Goroutine不能执行的情况发生。
+由运行结果可知funcA和funcB交替执行。所以Goroutine应该是抢占式的调度，不会有某个Goroutine长期占有CPU导致其他Goroutine不能执行的情况发生。
 
 # 问题二
 
@@ -79,7 +79,7 @@ func main() {
 }
 ```
 
-输出结果：  
+运行结果：  
 result = 102277
 
 多线程下result = result + 1并不是原子操作，需要加锁，没什么问题。
@@ -121,7 +121,7 @@ func main() {
 }
 ```
 
-输出结果：
+运行结果：
 
 result = 200000
 
