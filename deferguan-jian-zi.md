@@ -106,7 +106,6 @@ func main() {
     fmt.Println(funcB())
     fmt.Println(funcC())
 }
-
 ```
 
 执行结果：
@@ -117,8 +116,6 @@ func main() {
 
 1
 
-
-
 根据\(赋值指令 +  defer + return\)的执行过程，可以对代码进行改写
 
 funcA可以改写为：
@@ -126,18 +123,12 @@ funcA可以改写为：
 ```
 func funcA() (result int) {
     result = 0
-    defer func() {
+    func() {
         result++
     }() 
     return 
 }
 ```
-
-
-
-
-
-
 
 
 
