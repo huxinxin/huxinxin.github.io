@@ -36,5 +36,5 @@ func main() {
 }
 ```
 
-由执行结果可知funcA和funcB交替执行。所以即使在单线程
+由执行结果可知funcA和funcB交替执行。所以Goroutine应该是抢占式的调度，不会有某个Goroutine长期占有CPU使其他Goroutine得不到执行的情况发生。
 
