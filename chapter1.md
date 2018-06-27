@@ -28,15 +28,13 @@ func funcB() {
 }
 
 func main() {
+    //线程数设为1，在多线程的情况下，线程之间会抢CPU，这个问题没有意义
     runtime.GOMAXPROCS(1)
     go funcA()
     go funcB()
     time.Sleep(10 * time.Second)
 }
-
 ```
 
-执行结果：
-
-
+由执行结果可知funcA和funcB交替执行。所以即使在单线程
 
