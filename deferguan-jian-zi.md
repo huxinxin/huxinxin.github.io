@@ -53,16 +53,15 @@ func funcB() {
     }(a)
     a++ 
 }
-
 ```
 
 执行结果：
 
-funcA
+  
+  
 
-a= 6
 
-funcB
+funcA a= 6
 
-a= 5
+funcB a= 5
 
