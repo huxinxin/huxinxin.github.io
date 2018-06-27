@@ -147,9 +147,7 @@ func funcC() (result int) {
     }(result)
     return
 }
-
-
 ```
 
-
+对以上代码就比较好理解了
 
