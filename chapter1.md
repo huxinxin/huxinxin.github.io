@@ -34,7 +34,7 @@ func main() {
 
 由运行结果可知funcA和funcB交替执行。所以Goroutine应该是抢占式的调度，不会有某个Goroutine长期占有CPU导致其他Goroutine不能执行的情况发生。
 
-# 问题二
+# 问题二：线程安全
 
 线程安全（或者说协程安全）
 
