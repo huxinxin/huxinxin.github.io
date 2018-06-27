@@ -132,7 +132,7 @@ func funcA() (result int) {
 func funcB() (result int) {
     t := 2
     result = t
-    defer func() {
+    func() {
         t = t + 2 
     }() 
     return
