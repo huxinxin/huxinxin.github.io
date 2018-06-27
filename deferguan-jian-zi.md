@@ -135,10 +135,8 @@ func funcB() (result int) {
     defer func() {
         t = t + 2 
     }() 
-    return t
+    return
 }
-
-
 ```
 
 
