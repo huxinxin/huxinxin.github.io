@@ -1,4 +1,4 @@
-# defer执行顺序
+# 一、执行顺序先进后出
 
 ```
 package main
@@ -26,6 +26,4 @@ defer test C
 defer test B
 
 defer test A
-
-结论：defer执行顺序为先进后出
 
