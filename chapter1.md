@@ -77,7 +77,6 @@ func main() {
     <-chB
     fmt.Println("result = ", result)
 }
-
 ```
 
 输出结果：  
@@ -85,5 +84,42 @@ result = 102277
 
 多线程下result = result + 1并不是原子操作，需要加锁，没什么问题。
 
-下面把
+下面把线程数设置为1
+
+```
+package main
+
+import (
+    "fmt"
+    "runtime"
+)
+
+var result int = 0 
+var chA = make(chan bool)
+var chB = make(chan bool)
+
+func funcA() {
+    for i := 0; i < 100000; i++ {
+        result = result + 1 
+    }   
+    chA <- true
+}
+func funcB() {
+    for i := 0; i < 100000; i++ {
+        result = result + 1 
+    }   
+    chB <- true
+}
+
+func main() {
+    runtime.GOMAXPROCS(1)
+    go funcA()
+    go funcB()
+    <-chA
+    <-chB
+    fmt.Println("result = ", result)
+}
+```
+
+
 
