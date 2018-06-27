@@ -119,7 +119,12 @@ func main() {
     <-chB
     fmt.Println("result = ", result)
 }
+
 ```
 
+输出结果：
 
+result = 200000
+
+在单线程下不同Goroutine之间不存在线程安全的问题
 
